@@ -1,0 +1,12 @@
+
+model OrderItem{
+    id String @id @default(uuid())
+    orderInfo Order @relation(fields: [orderId],references: [id])
+    orderId String
+    mealInfo Meal @relation(fields: [mealId],references: [id])
+    mealId String
+    quantity Int
+    price Int
+    createdAt DateTime @default(now())
+    updateAt DateTime @updatedAt
+}

@@ -1,0 +1,30 @@
+
+model User{
+  id String @id @default(uuid())
+  name String?
+  email String @unique
+  password String
+  role  UserRole @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
+  status  Status @default(ACTIVE)
+
+
+  providerProfiles ProviderProfile?
+
+  categories Category[]
+
+  orders Order[]
+}
+
+// userRole will be change
+enum UserRole{
+  USER
+  ADMIN
+
+}
+
+enum Status{
+  ACTIVE
+  SUSPENDED
+}

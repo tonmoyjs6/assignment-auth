@@ -1,0 +1,13 @@
+
+model Order{
+    id String @id @default(uuid())
+    userInfo User @relation(fields: [userId],references: [id])
+    userId String
+    providerInfo ProviderProfile @relation(fields: [providerId],references: [id])
+    providerId String
+    totalAmount Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    orderItems OrderItem[]
+}

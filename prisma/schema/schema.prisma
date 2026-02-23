@@ -14,27 +14,3 @@ datasource db {
 }
 
 
-
-model User{
-  id String @id @default(uuid())
-  name String?
-  email String @unique
-  password String
-  role  UserRole @default(USER)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  status  Status @default(ACTIVE)
-
-}
-
-
-enum UserRole{
-  USER
-  ADMIN
-
-}
-
-enum Status{
-  ACTIVE
-  SUSPENDED
-}

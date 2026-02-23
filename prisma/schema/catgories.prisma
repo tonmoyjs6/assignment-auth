@@ -1,0 +1,17 @@
+
+
+model Category{
+    id String @id @default(uuid())
+    name String? 
+    description String?
+    isActive Boolean
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    adminProvideCategory User @relation(fields: [userId],references: [id])
+    userId String
+
+
+    
+
+    mealCategories MealCategory[]
+} 
