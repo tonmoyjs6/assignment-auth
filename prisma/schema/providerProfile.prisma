@@ -7,8 +7,12 @@ model ProviderProfile{
     userId String @unique
     phone String 
     address String
+    averageRating Float @default(0)
+    totalreviews Int @default(0)
 
     meals Meal[]
 
     orders Order[]
+
+    reviews Review[]
 }

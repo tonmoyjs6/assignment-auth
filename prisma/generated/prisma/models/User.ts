@@ -209,6 +209,7 @@ export type UserWhereInput = {
   providerProfiles?: Prisma.XOR<Prisma.ProviderProfileNullableScalarRelationFilter, Prisma.ProviderProfileWhereInput> | null
   categories?: Prisma.CategoryListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -223,6 +224,7 @@ export type UserOrderByWithRelationInput = {
   providerProfiles?: Prisma.ProviderProfileOrderByWithRelationInput
   categories?: Prisma.CategoryOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -240,6 +242,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   providerProfiles?: Prisma.XOR<Prisma.ProviderProfileNullableScalarRelationFilter, Prisma.ProviderProfileWhereInput> | null
   categories?: Prisma.CategoryListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -282,6 +285,7 @@ export type UserCreateInput = {
   providerProfiles?: Prisma.ProviderProfileCreateNestedOneWithoutUserInfoInput
   categories?: Prisma.CategoryCreateNestedManyWithoutAdminProvideCategoryInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInfoInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -296,6 +300,7 @@ export type UserUncheckedCreateInput = {
   providerProfiles?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInfoInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutAdminProvideCategoryInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInfoInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserUpdateInput = {
@@ -310,6 +315,7 @@ export type UserUpdateInput = {
   providerProfiles?: Prisma.ProviderProfileUpdateOneWithoutUserInfoNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutAdminProvideCategoryNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserInfoNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserInfoNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -324,6 +330,7 @@ export type UserUncheckedUpdateInput = {
   providerProfiles?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserInfoNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutAdminProvideCategoryNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserInfoNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserInfoNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -439,6 +446,20 @@ export type UserUpdateOneRequiredWithoutProviderProfilesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProviderProfilesInput, Prisma.UserUpdateWithoutProviderProfilesInput>, Prisma.UserUncheckedUpdateWithoutProviderProfilesInput>
 }
 
+export type UserCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.UserUpsertWithoutReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewsInput, Prisma.UserUpdateWithoutReviewsInput>, Prisma.UserUncheckedUpdateWithoutReviewsInput>
+}
+
 export type EnumUserRoleFieldUpdateOperationsInput = {
   set?: $Enums.UserRole
 }
@@ -458,6 +479,7 @@ export type UserCreateWithoutCategoriesInput = {
   status?: $Enums.Status
   providerProfiles?: Prisma.ProviderProfileCreateNestedOneWithoutUserInfoInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInfoInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserUncheckedCreateWithoutCategoriesInput = {
@@ -471,6 +493,7 @@ export type UserUncheckedCreateWithoutCategoriesInput = {
   status?: $Enums.Status
   providerProfiles?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInfoInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInfoInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserCreateOrConnectWithoutCategoriesInput = {
@@ -500,6 +523,7 @@ export type UserUpdateWithoutCategoriesInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   providerProfiles?: Prisma.ProviderProfileUpdateOneWithoutUserInfoNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserInfoNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserInfoNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCategoriesInput = {
@@ -513,6 +537,7 @@ export type UserUncheckedUpdateWithoutCategoriesInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   providerProfiles?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserInfoNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserInfoNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserInfoNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -526,6 +551,7 @@ export type UserCreateWithoutOrdersInput = {
   status?: $Enums.Status
   providerProfiles?: Prisma.ProviderProfileCreateNestedOneWithoutUserInfoInput
   categories?: Prisma.CategoryCreateNestedManyWithoutAdminProvideCategoryInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -539,6 +565,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   status?: $Enums.Status
   providerProfiles?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInfoInput
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutAdminProvideCategoryInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -568,6 +595,7 @@ export type UserUpdateWithoutOrdersInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   providerProfiles?: Prisma.ProviderProfileUpdateOneWithoutUserInfoNestedInput
   categories?: Prisma.CategoryUpdateManyWithoutAdminProvideCategoryNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserInfoNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -581,6 +609,7 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   providerProfiles?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserInfoNestedInput
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutAdminProvideCategoryNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserInfoNestedInput
 }
 
 export type UserCreateWithoutProviderProfilesInput = {
@@ -594,6 +623,7 @@ export type UserCreateWithoutProviderProfilesInput = {
   status?: $Enums.Status
   categories?: Prisma.CategoryCreateNestedManyWithoutAdminProvideCategoryInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInfoInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserUncheckedCreateWithoutProviderProfilesInput = {
@@ -607,6 +637,7 @@ export type UserUncheckedCreateWithoutProviderProfilesInput = {
   status?: $Enums.Status
   categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutAdminProvideCategoryInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInfoInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInfoInput
 }
 
 export type UserCreateOrConnectWithoutProviderProfilesInput = {
@@ -636,6 +667,7 @@ export type UserUpdateWithoutProviderProfilesInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   categories?: Prisma.CategoryUpdateManyWithoutAdminProvideCategoryNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserInfoNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserInfoNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProviderProfilesInput = {
@@ -649,6 +681,79 @@ export type UserUncheckedUpdateWithoutProviderProfilesInput = {
   status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   categories?: Prisma.CategoryUncheckedUpdateManyWithoutAdminProvideCategoryNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserInfoNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserInfoNestedInput
+}
+
+export type UserCreateWithoutReviewsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  password: string
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  status?: $Enums.Status
+  providerProfiles?: Prisma.ProviderProfileCreateNestedOneWithoutUserInfoInput
+  categories?: Prisma.CategoryCreateNestedManyWithoutAdminProvideCategoryInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInfoInput
+}
+
+export type UserUncheckedCreateWithoutReviewsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  password: string
+  role?: $Enums.UserRole
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  status?: $Enums.Status
+  providerProfiles?: Prisma.ProviderProfileUncheckedCreateNestedOneWithoutUserInfoInput
+  categories?: Prisma.CategoryUncheckedCreateNestedManyWithoutAdminProvideCategoryInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInfoInput
+}
+
+export type UserCreateOrConnectWithoutReviewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+}
+
+export type UserUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReviewsInput, Prisma.UserUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReviewsInput, Prisma.UserUncheckedCreateWithoutReviewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReviewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReviewsInput, Prisma.UserUncheckedUpdateWithoutReviewsInput>
+}
+
+export type UserUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  providerProfiles?: Prisma.ProviderProfileUpdateOneWithoutUserInfoNestedInput
+  categories?: Prisma.CategoryUpdateManyWithoutAdminProvideCategoryNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserInfoNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
+  providerProfiles?: Prisma.ProviderProfileUncheckedUpdateOneWithoutUserInfoNestedInput
+  categories?: Prisma.CategoryUncheckedUpdateManyWithoutAdminProvideCategoryNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserInfoNestedInput
 }
 
 
@@ -659,11 +764,13 @@ export type UserUncheckedUpdateWithoutProviderProfilesInput = {
 export type UserCountOutputType = {
   categories: number
   orders: number
+  reviews: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   categories?: boolean | UserCountOutputTypeCountCategoriesArgs
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
+  reviews?: boolean | UserCountOutputTypeCountReviewsArgs
 }
 
 /**
@@ -690,6 +797,13 @@ export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.OrderWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -703,6 +817,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   providerProfiles?: boolean | Prisma.User$providerProfilesArgs<ExtArgs>
   categories?: boolean | Prisma.User$categoriesArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -744,6 +859,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   providerProfiles?: boolean | Prisma.User$providerProfilesArgs<ExtArgs>
   categories?: boolean | Prisma.User$categoriesArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
+  reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -755,6 +871,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     providerProfiles: Prisma.$ProviderProfilePayload<ExtArgs> | null
     categories: Prisma.$CategoryPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1162,6 +1279,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   providerProfiles<T extends Prisma.User$providerProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$providerProfilesArgs<ExtArgs>>): Prisma.Prisma__ProviderProfileClient<runtime.Types.Result.GetResult<Prisma.$ProviderProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   categories<T extends Prisma.User$categoriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1651,6 +1769,30 @@ export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * User.reviews
+ */
+export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**

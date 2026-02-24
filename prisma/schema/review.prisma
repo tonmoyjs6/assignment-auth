@@ -1,0 +1,11 @@
+model Review{
+    id String @id @default(uuid())
+    userId String @unique
+    providerId String
+    rating Int @default(0)
+    comment String?
+    createdAt DateTime @default(now())
+    updateAt DateTime @updatedAt
+    userInfo User @relation(fields: [userId],references: [id])
+    providerInfo ProviderProfile @relation(fields: [providerId],references: [id])
+}

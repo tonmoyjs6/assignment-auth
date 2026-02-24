@@ -20,8 +20,20 @@ export type ProviderProfileModel = runtime.Types.Result.DefaultSelection<Prisma.
 
 export type AggregateProviderProfile = {
   _count: ProviderProfileCountAggregateOutputType | null
+  _avg: ProviderProfileAvgAggregateOutputType | null
+  _sum: ProviderProfileSumAggregateOutputType | null
   _min: ProviderProfileMinAggregateOutputType | null
   _max: ProviderProfileMaxAggregateOutputType | null
+}
+
+export type ProviderProfileAvgAggregateOutputType = {
+  averageRating: number | null
+  totalreviews: number | null
+}
+
+export type ProviderProfileSumAggregateOutputType = {
+  averageRating: number | null
+  totalreviews: number | null
 }
 
 export type ProviderProfileMinAggregateOutputType = {
@@ -30,6 +42,8 @@ export type ProviderProfileMinAggregateOutputType = {
   userId: string | null
   phone: string | null
   address: string | null
+  averageRating: number | null
+  totalreviews: number | null
 }
 
 export type ProviderProfileMaxAggregateOutputType = {
@@ -38,6 +52,8 @@ export type ProviderProfileMaxAggregateOutputType = {
   userId: string | null
   phone: string | null
   address: string | null
+  averageRating: number | null
+  totalreviews: number | null
 }
 
 export type ProviderProfileCountAggregateOutputType = {
@@ -46,9 +62,21 @@ export type ProviderProfileCountAggregateOutputType = {
   userId: number
   phone: number
   address: number
+  averageRating: number
+  totalreviews: number
   _all: number
 }
 
+
+export type ProviderProfileAvgAggregateInputType = {
+  averageRating?: true
+  totalreviews?: true
+}
+
+export type ProviderProfileSumAggregateInputType = {
+  averageRating?: true
+  totalreviews?: true
+}
 
 export type ProviderProfileMinAggregateInputType = {
   id?: true
@@ -56,6 +84,8 @@ export type ProviderProfileMinAggregateInputType = {
   userId?: true
   phone?: true
   address?: true
+  averageRating?: true
+  totalreviews?: true
 }
 
 export type ProviderProfileMaxAggregateInputType = {
@@ -64,6 +94,8 @@ export type ProviderProfileMaxAggregateInputType = {
   userId?: true
   phone?: true
   address?: true
+  averageRating?: true
+  totalreviews?: true
 }
 
 export type ProviderProfileCountAggregateInputType = {
@@ -72,6 +104,8 @@ export type ProviderProfileCountAggregateInputType = {
   userId?: true
   phone?: true
   address?: true
+  averageRating?: true
+  totalreviews?: true
   _all?: true
 }
 
@@ -113,6 +147,18 @@ export type ProviderProfileAggregateArgs<ExtArgs extends runtime.Types.Extension
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ProviderProfileAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ProviderProfileSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ProviderProfileMinAggregateInputType
@@ -143,6 +189,8 @@ export type ProviderProfileGroupByArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   _count?: ProviderProfileCountAggregateInputType | true
+  _avg?: ProviderProfileAvgAggregateInputType
+  _sum?: ProviderProfileSumAggregateInputType
   _min?: ProviderProfileMinAggregateInputType
   _max?: ProviderProfileMaxAggregateInputType
 }
@@ -153,7 +201,11 @@ export type ProviderProfileGroupByOutputType = {
   userId: string
   phone: string
   address: string
+  averageRating: number
+  totalreviews: number
   _count: ProviderProfileCountAggregateOutputType | null
+  _avg: ProviderProfileAvgAggregateOutputType | null
+  _sum: ProviderProfileSumAggregateOutputType | null
   _min: ProviderProfileMinAggregateOutputType | null
   _max: ProviderProfileMaxAggregateOutputType | null
 }
@@ -182,9 +234,12 @@ export type ProviderProfileWhereInput = {
   userId?: Prisma.StringFilter<"ProviderProfile"> | string
   phone?: Prisma.StringFilter<"ProviderProfile"> | string
   address?: Prisma.StringFilter<"ProviderProfile"> | string
+  averageRating?: Prisma.FloatFilter<"ProviderProfile"> | number
+  totalreviews?: Prisma.IntFilter<"ProviderProfile"> | number
   userInfo?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   meals?: Prisma.MealListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }
 
 export type ProviderProfileOrderByWithRelationInput = {
@@ -193,9 +248,12 @@ export type ProviderProfileOrderByWithRelationInput = {
   userId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalreviews?: Prisma.SortOrder
   userInfo?: Prisma.UserOrderByWithRelationInput
   meals?: Prisma.MealOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
+  reviews?: Prisma.ReviewOrderByRelationAggregateInput
 }
 
 export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -207,9 +265,12 @@ export type ProviderProfileWhereUniqueInput = Prisma.AtLeast<{
   resturantName?: Prisma.StringFilter<"ProviderProfile"> | string
   phone?: Prisma.StringFilter<"ProviderProfile"> | string
   address?: Prisma.StringFilter<"ProviderProfile"> | string
+  averageRating?: Prisma.FloatFilter<"ProviderProfile"> | number
+  totalreviews?: Prisma.IntFilter<"ProviderProfile"> | number
   userInfo?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   meals?: Prisma.MealListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  reviews?: Prisma.ReviewListRelationFilter
 }, "id" | "userId">
 
 export type ProviderProfileOrderByWithAggregationInput = {
@@ -218,9 +279,13 @@ export type ProviderProfileOrderByWithAggregationInput = {
   userId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalreviews?: Prisma.SortOrder
   _count?: Prisma.ProviderProfileCountOrderByAggregateInput
+  _avg?: Prisma.ProviderProfileAvgOrderByAggregateInput
   _max?: Prisma.ProviderProfileMaxOrderByAggregateInput
   _min?: Prisma.ProviderProfileMinOrderByAggregateInput
+  _sum?: Prisma.ProviderProfileSumOrderByAggregateInput
 }
 
 export type ProviderProfileScalarWhereWithAggregatesInput = {
@@ -232,6 +297,8 @@ export type ProviderProfileScalarWhereWithAggregatesInput = {
   userId?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   phone?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
   address?: Prisma.StringWithAggregatesFilter<"ProviderProfile"> | string
+  averageRating?: Prisma.FloatWithAggregatesFilter<"ProviderProfile"> | number
+  totalreviews?: Prisma.IntWithAggregatesFilter<"ProviderProfile"> | number
 }
 
 export type ProviderProfileCreateInput = {
@@ -239,9 +306,12 @@ export type ProviderProfileCreateInput = {
   resturantName: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   userInfo: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
   meals?: Prisma.MealCreateNestedManyWithoutProviderInfoInput
   orders?: Prisma.OrderCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileUncheckedCreateInput = {
@@ -250,8 +320,11 @@ export type ProviderProfileUncheckedCreateInput = {
   userId: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInfoInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileUpdateInput = {
@@ -259,9 +332,12 @@ export type ProviderProfileUpdateInput = {
   resturantName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   userInfo?: Prisma.UserUpdateOneRequiredWithoutProviderProfilesNestedInput
   meals?: Prisma.MealUpdateManyWithoutProviderInfoNestedInput
   orders?: Prisma.OrderUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutProviderInfoNestedInput
 }
 
 export type ProviderProfileUncheckedUpdateInput = {
@@ -270,8 +346,11 @@ export type ProviderProfileUncheckedUpdateInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderInfoNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutProviderInfoNestedInput
 }
 
 export type ProviderProfileCreateManyInput = {
@@ -280,6 +359,8 @@ export type ProviderProfileCreateManyInput = {
   userId: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
 }
 
 export type ProviderProfileUpdateManyMutationInput = {
@@ -287,6 +368,8 @@ export type ProviderProfileUpdateManyMutationInput = {
   resturantName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ProviderProfileUncheckedUpdateManyInput = {
@@ -295,6 +378,8 @@ export type ProviderProfileUncheckedUpdateManyInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ProviderProfileScalarRelationFilter = {
@@ -308,6 +393,13 @@ export type ProviderProfileCountOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalreviews?: Prisma.SortOrder
+}
+
+export type ProviderProfileAvgOrderByAggregateInput = {
+  averageRating?: Prisma.SortOrder
+  totalreviews?: Prisma.SortOrder
 }
 
 export type ProviderProfileMaxOrderByAggregateInput = {
@@ -316,6 +408,8 @@ export type ProviderProfileMaxOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalreviews?: Prisma.SortOrder
 }
 
 export type ProviderProfileMinOrderByAggregateInput = {
@@ -324,6 +418,13 @@ export type ProviderProfileMinOrderByAggregateInput = {
   userId?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
+  averageRating?: Prisma.SortOrder
+  totalreviews?: Prisma.SortOrder
+}
+
+export type ProviderProfileSumOrderByAggregateInput = {
+  averageRating?: Prisma.SortOrder
+  totalreviews?: Prisma.SortOrder
 }
 
 export type ProviderProfileNullableScalarRelationFilter = {
@@ -357,6 +458,28 @@ export type ProviderProfileUpdateOneRequiredWithoutOrdersNestedInput = {
   upsert?: Prisma.ProviderProfileUpsertWithoutOrdersInput
   connect?: Prisma.ProviderProfileWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderProfileUpdateToOneWithWhereWithoutOrdersInput, Prisma.ProviderProfileUpdateWithoutOrdersInput>, Prisma.ProviderProfileUncheckedUpdateWithoutOrdersInput>
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type ProviderProfileCreateNestedOneWithoutReviewsInput = {
+  create?: Prisma.XOR<Prisma.ProviderProfileCreateWithoutReviewsInput, Prisma.ProviderProfileUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ProviderProfileCreateOrConnectWithoutReviewsInput
+  connect?: Prisma.ProviderProfileWhereUniqueInput
+}
+
+export type ProviderProfileUpdateOneRequiredWithoutReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProviderProfileCreateWithoutReviewsInput, Prisma.ProviderProfileUncheckedCreateWithoutReviewsInput>
+  connectOrCreate?: Prisma.ProviderProfileCreateOrConnectWithoutReviewsInput
+  upsert?: Prisma.ProviderProfileUpsertWithoutReviewsInput
+  connect?: Prisma.ProviderProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderProfileUpdateToOneWithWhereWithoutReviewsInput, Prisma.ProviderProfileUpdateWithoutReviewsInput>, Prisma.ProviderProfileUncheckedUpdateWithoutReviewsInput>
 }
 
 export type ProviderProfileCreateNestedOneWithoutUserInfoInput = {
@@ -396,8 +519,11 @@ export type ProviderProfileCreateWithoutMealsInput = {
   resturantName: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   userInfo: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
   orders?: Prisma.OrderCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileUncheckedCreateWithoutMealsInput = {
@@ -406,7 +532,10 @@ export type ProviderProfileUncheckedCreateWithoutMealsInput = {
   userId: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileCreateOrConnectWithoutMealsInput = {
@@ -430,8 +559,11 @@ export type ProviderProfileUpdateWithoutMealsInput = {
   resturantName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   userInfo?: Prisma.UserUpdateOneRequiredWithoutProviderProfilesNestedInput
   orders?: Prisma.OrderUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutProviderInfoNestedInput
 }
 
 export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
@@ -440,7 +572,10 @@ export type ProviderProfileUncheckedUpdateWithoutMealsInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutProviderInfoNestedInput
 }
 
 export type ProviderProfileCreateWithoutOrdersInput = {
@@ -448,8 +583,11 @@ export type ProviderProfileCreateWithoutOrdersInput = {
   resturantName: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   userInfo: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
   meals?: Prisma.MealCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileUncheckedCreateWithoutOrdersInput = {
@@ -458,7 +596,10 @@ export type ProviderProfileUncheckedCreateWithoutOrdersInput = {
   userId: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileCreateOrConnectWithoutOrdersInput = {
@@ -482,8 +623,11 @@ export type ProviderProfileUpdateWithoutOrdersInput = {
   resturantName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   userInfo?: Prisma.UserUpdateOneRequiredWithoutProviderProfilesNestedInput
   meals?: Prisma.MealUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutProviderInfoNestedInput
 }
 
 export type ProviderProfileUncheckedUpdateWithoutOrdersInput = {
@@ -492,7 +636,74 @@ export type ProviderProfileUncheckedUpdateWithoutOrdersInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutProviderInfoNestedInput
+}
+
+export type ProviderProfileCreateWithoutReviewsInput = {
+  id?: string
+  resturantName: string
+  phone: string
+  address: string
+  averageRating?: number
+  totalreviews?: number
+  userInfo: Prisma.UserCreateNestedOneWithoutProviderProfilesInput
+  meals?: Prisma.MealCreateNestedManyWithoutProviderInfoInput
+  orders?: Prisma.OrderCreateNestedManyWithoutProviderInfoInput
+}
+
+export type ProviderProfileUncheckedCreateWithoutReviewsInput = {
+  id?: string
+  resturantName: string
+  userId: string
+  phone: string
+  address: string
+  averageRating?: number
+  totalreviews?: number
+  meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInfoInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInfoInput
+}
+
+export type ProviderProfileCreateOrConnectWithoutReviewsInput = {
+  where: Prisma.ProviderProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProviderProfileCreateWithoutReviewsInput, Prisma.ProviderProfileUncheckedCreateWithoutReviewsInput>
+}
+
+export type ProviderProfileUpsertWithoutReviewsInput = {
+  update: Prisma.XOR<Prisma.ProviderProfileUpdateWithoutReviewsInput, Prisma.ProviderProfileUncheckedUpdateWithoutReviewsInput>
+  create: Prisma.XOR<Prisma.ProviderProfileCreateWithoutReviewsInput, Prisma.ProviderProfileUncheckedCreateWithoutReviewsInput>
+  where?: Prisma.ProviderProfileWhereInput
+}
+
+export type ProviderProfileUpdateToOneWithWhereWithoutReviewsInput = {
+  where?: Prisma.ProviderProfileWhereInput
+  data: Prisma.XOR<Prisma.ProviderProfileUpdateWithoutReviewsInput, Prisma.ProviderProfileUncheckedUpdateWithoutReviewsInput>
+}
+
+export type ProviderProfileUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  resturantName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
+  userInfo?: Prisma.UserUpdateOneRequiredWithoutProviderProfilesNestedInput
+  meals?: Prisma.MealUpdateManyWithoutProviderInfoNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutProviderInfoNestedInput
+}
+
+export type ProviderProfileUncheckedUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  resturantName?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
+  meals?: Prisma.MealUncheckedUpdateManyWithoutProviderInfoNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderInfoNestedInput
 }
 
 export type ProviderProfileCreateWithoutUserInfoInput = {
@@ -500,8 +711,11 @@ export type ProviderProfileCreateWithoutUserInfoInput = {
   resturantName: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   meals?: Prisma.MealCreateNestedManyWithoutProviderInfoInput
   orders?: Prisma.OrderCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileUncheckedCreateWithoutUserInfoInput = {
@@ -509,8 +723,11 @@ export type ProviderProfileUncheckedCreateWithoutUserInfoInput = {
   resturantName: string
   phone: string
   address: string
+  averageRating?: number
+  totalreviews?: number
   meals?: Prisma.MealUncheckedCreateNestedManyWithoutProviderInfoInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutProviderInfoInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutProviderInfoInput
 }
 
 export type ProviderProfileCreateOrConnectWithoutUserInfoInput = {
@@ -534,8 +751,11 @@ export type ProviderProfileUpdateWithoutUserInfoInput = {
   resturantName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   meals?: Prisma.MealUpdateManyWithoutProviderInfoNestedInput
   orders?: Prisma.OrderUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutProviderInfoNestedInput
 }
 
 export type ProviderProfileUncheckedUpdateWithoutUserInfoInput = {
@@ -543,8 +763,11 @@ export type ProviderProfileUncheckedUpdateWithoutUserInfoInput = {
   resturantName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
+  averageRating?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalreviews?: Prisma.IntFieldUpdateOperationsInput | number
   meals?: Prisma.MealUncheckedUpdateManyWithoutProviderInfoNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutProviderInfoNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutProviderInfoNestedInput
 }
 
 
@@ -555,11 +778,13 @@ export type ProviderProfileUncheckedUpdateWithoutUserInfoInput = {
 export type ProviderProfileCountOutputType = {
   meals: number
   orders: number
+  reviews: number
 }
 
 export type ProviderProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   meals?: boolean | ProviderProfileCountOutputTypeCountMealsArgs
   orders?: boolean | ProviderProfileCountOutputTypeCountOrdersArgs
+  reviews?: boolean | ProviderProfileCountOutputTypeCountReviewsArgs
 }
 
 /**
@@ -586,6 +811,13 @@ export type ProviderProfileCountOutputTypeCountOrdersArgs<ExtArgs extends runtim
   where?: Prisma.OrderWhereInput
 }
 
+/**
+ * ProviderProfileCountOutputType without action
+ */
+export type ProviderProfileCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReviewWhereInput
+}
+
 
 export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -593,9 +825,12 @@ export type ProviderProfileSelect<ExtArgs extends runtime.Types.Extensions.Inter
   userId?: boolean
   phone?: boolean
   address?: boolean
+  averageRating?: boolean
+  totalreviews?: boolean
   userInfo?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
   orders?: boolean | Prisma.ProviderProfile$ordersArgs<ExtArgs>
+  reviews?: boolean | Prisma.ProviderProfile$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.ProviderProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["providerProfile"]>
 
@@ -605,6 +840,8 @@ export type ProviderProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   userId?: boolean
   phone?: boolean
   address?: boolean
+  averageRating?: boolean
+  totalreviews?: boolean
   userInfo?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["providerProfile"]>
 
@@ -614,6 +851,8 @@ export type ProviderProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   userId?: boolean
   phone?: boolean
   address?: boolean
+  averageRating?: boolean
+  totalreviews?: boolean
   userInfo?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["providerProfile"]>
 
@@ -623,13 +862,16 @@ export type ProviderProfileSelectScalar = {
   userId?: boolean
   phone?: boolean
   address?: boolean
+  averageRating?: boolean
+  totalreviews?: boolean
 }
 
-export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "resturantName" | "userId" | "phone" | "address", ExtArgs["result"]["providerProfile"]>
+export type ProviderProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "resturantName" | "userId" | "phone" | "address" | "averageRating" | "totalreviews", ExtArgs["result"]["providerProfile"]>
 export type ProviderProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   userInfo?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meals?: boolean | Prisma.ProviderProfile$mealsArgs<ExtArgs>
   orders?: boolean | Prisma.ProviderProfile$ordersArgs<ExtArgs>
+  reviews?: boolean | Prisma.ProviderProfile$reviewsArgs<ExtArgs>
   _count?: boolean | Prisma.ProviderProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProviderProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -645,6 +887,7 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     userInfo: Prisma.$UserPayload<ExtArgs>
     meals: Prisma.$MealPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
+    reviews: Prisma.$ReviewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -652,6 +895,8 @@ export type $ProviderProfilePayload<ExtArgs extends runtime.Types.Extensions.Int
     userId: string
     phone: string
     address: string
+    averageRating: number
+    totalreviews: number
   }, ExtArgs["result"]["providerProfile"]>
   composites: {}
 }
@@ -1049,6 +1294,7 @@ export interface Prisma__ProviderProfileClient<T, Null = never, ExtArgs extends 
   userInfo<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   meals<T extends Prisma.ProviderProfile$mealsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderProfile$mealsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.ProviderProfile$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderProfile$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reviews<T extends Prisma.ProviderProfile$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderProfile$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1083,6 +1329,8 @@ export interface ProviderProfileFieldRefs {
   readonly userId: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly phone: Prisma.FieldRef<"ProviderProfile", 'String'>
   readonly address: Prisma.FieldRef<"ProviderProfile", 'String'>
+  readonly averageRating: Prisma.FieldRef<"ProviderProfile", 'Float'>
+  readonly totalreviews: Prisma.FieldRef<"ProviderProfile", 'Int'>
 }
     
 
@@ -1524,6 +1772,30 @@ export type ProviderProfile$ordersArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * ProviderProfile.reviews
+ */
+export type ProviderProfile$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Review
+   */
+  select?: Prisma.ReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Review
+   */
+  omit?: Prisma.ReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReviewInclude<ExtArgs> | null
+  where?: Prisma.ReviewWhereInput
+  orderBy?: Prisma.ReviewOrderByWithRelationInput | Prisma.ReviewOrderByWithRelationInput[]
+  cursor?: Prisma.ReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ReviewScalarFieldEnum | Prisma.ReviewScalarFieldEnum[]
 }
 
 /**
