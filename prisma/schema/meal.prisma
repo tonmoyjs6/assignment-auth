@@ -2,6 +2,7 @@
 
 model Meal{
     id String @id @default(uuid())
+    mealName String?
     providerInfo ProviderProfile @relation(fields: [providerId],references: [id])
     providerId String
     isAvailable Boolean ?

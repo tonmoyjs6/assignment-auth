@@ -4,7 +4,7 @@ model User{
   name String?
   email String @unique
   password String
-  role  UserRole @default(USER)
+  role  UserRole @default(CUSTOMER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
   status  Status @default(ACTIVE)
@@ -21,8 +21,9 @@ model User{
 
 // userRole will be change
 enum UserRole{
-  USER
+  CUSTOMER
   ADMIN
+  PROVIDER
 
 }
 

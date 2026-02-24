@@ -1,15 +1,18 @@
 import { prisma } from "../../lib/prisma"
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+import { UserRole } from "../../../prisma/generated/prisma/enums"
 
-const createUser=async({name,email,password}:{name:string,email:string,password:string})=>{
+const createUser=async({name,email,password,role}:{name:string,email:string,password:string,role?:UserRole})=>{
     const hashPassWord=await bcrypt.hash(password,10)
+
 
     const result= await prisma.user.create({
         data:{
             name,
             email,
-            password:hashPassWord
+            password:hashPassWord,
+            role:role ?? "CUSTOMER"
         }
     })
 
