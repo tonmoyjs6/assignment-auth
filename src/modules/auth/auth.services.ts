@@ -54,7 +54,15 @@ const loginUser=async({password,email}:{password:string,email:string})=>{
     
 }
 
+
+
+const getCurrentUser=async()=>{
+    console.log("this my profile");
+
+}
+
 export const authService={
     createUser,
-    loginUser
+    loginUser,
+    getCurrentUser
 }

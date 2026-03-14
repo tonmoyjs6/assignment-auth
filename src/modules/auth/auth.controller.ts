@@ -1,4 +1,4 @@
-import { RequestHandler } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { authService } from "./auth.services";
 
 
@@ -29,7 +29,13 @@ const loginUser:RequestHandler=async(req,res)=>{
 
 }
 
+const getCurrentUser=async(req:Request,res:Response)=>{
+    const result= await authService.getCurrentUser()
+
+}
+
 export const authContorller={
     createUser,
-    loginUser
+    loginUser,
+    getCurrentUser
 }
